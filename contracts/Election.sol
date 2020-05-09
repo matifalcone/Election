@@ -19,6 +19,11 @@ contract Election {
 	// Store Candidates Count
 	uint public candidatesCount;
 
+	// Voted Event
+	event votedEvent (
+		uint indexed _candidateID
+	);
+
 	// Constructor
 	constructor () public {
 		addCandidate("Candidate 1");
@@ -43,6 +48,9 @@ contract Election {
 
 		// Update candidate vote count
 		candidates[_candidateID].voteCount ++;
+
+		// Trigger voted event
+		emit votedEvent(_candidateID);
 
 	}
 
